@@ -1,4 +1,4 @@
-function [AMAP, AMAE, AMAV, AMAskew, AMAkurt, Si, cond_mean, cond_var, cond_skew, cond_kurt ,cond_PThr, number, lower, upper] = gsa_amaP_DLC(sampling_points, Output_Mat, nclass,thr,name_var )
+function [AMAP, AMAE, AMAV, AMAskew, AMAkurt, Si, cond_mean, cond_var, cond_skew, cond_kurt ,cond_PThr, number, lower, upper] = gsa_amaP(sampling_points, Output_Mat, nclass,thr,name_var )
 %
 
 % this function computes AMA sensitivity indices and principal Sobol Indices (Si)
