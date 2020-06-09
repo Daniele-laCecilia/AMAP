@@ -33,6 +33,11 @@ We invite the Users to test AMAP on their data, if suitable.
 * In Matlab, the color palette shall be edited if the number of uncertain parameters is different than 6;
 * Run.
 
+# Plot
+The plot generated is a barplot, which can have 1 column if a fixed time is used in the analysis or a number of columns equal to the number of time points in case an over time analysis is performed.
+The higher the value, the higher the contribution of an uncertain parameter with respect to the selected target variable.
+In analysis over time, the overall and single contribution of uncertain parameters can change. That is, at a particular time, the uncertainty of the parameters can be more or less significant than at other times.
+
 # Requirements
 The scripts were tested in R 3.5.0 and Matlab 2019a.
 
