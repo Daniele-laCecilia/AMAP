@@ -17,22 +17,21 @@ To run the example:
 If you use R, copy the .R scripts from the folder "R" and paste them in the folder "data"; then, run the main script "AMAP_analysis.R";
 If you use Matlab, copy the .m scripts from the folder "Matlab" and paste them in the folder "data"; then, run the main script "AMAP_analysis.m".
 In the main scripts (.R or .m), the Users can:
-Decide the indicators to plot by setting "var_out" and switch between an analysis of the parameters sensitivity to the target quantities at a fixed point in time or over time by setting the variable dotime=1 or dotime=0, respectively.
+* Decide the indicators to plot by setting "var_out"
+* Switch between an analysis of the parameters sensitivity to the target quantities at a fixed point in time or over time by setting the variable dotime=1 or dotime=0, respectively.
 
 We invite the Users to test AMAP on their data, if suitable.
-In the INPUT section of the main scripts, the Users define:
-The indicators to plot by setting "var_out";
-The value of "dotime" to switch between an analysis at a fixed point in time or over time;
-The .csv file name of the matrix "Sampling_points", containing Monte Carlo realizations of the parameters [n simulations x n parameters];
-The .csv file names (fixed time and over time) of the matrix "Output_Mat", containing full model evaluations [n simulations x n time points]. Should you have only one file, either fixed time or over time, please fill both entries with the same file name and then set "dotime" accordingly;
-The number of classes for "nclass" used to compute conditional statistics;
-The threshold value for "thr".
-The script automatically get "name_var", the name of each output variable (text string).
-
-Copy and paste the scripts in your working directory containing your data;
-Set the INPUT variables;
-In Matlab, the color palette shall be edited if the number of uncertain parameters is different than 6;
-Run.
+* Copy and paste the scripts in your working directory containing your data;
+* In the INPUT section of the main scripts, the Users define:
+  * The indicators to plot by setting "var_out";
+  * The value of "dotime" to switch between an analysis at a fixed point in time or over time;
+  * The .csv file name of the matrix "Sampling_points", containing Monte Carlo realizations of the parameters [n simulations x n parameters];
+  * The .csv file names (fixed time and over time) of the matrix "Output_Mat", containing full model evaluations [n simulations x n time points]. Should you have only one file, either fixed time or over time, please fill both entries with the same file name and then set "dotime" accordingly;
+  * The number of classes for "nclass" used to compute conditional statistics;
+  * The threshold value for "thr".
+* The script automatically get "name_var", the name of each output variable (text string);
+* In Matlab, the color palette shall be edited if the number of uncertain parameters is different than 6;
+* Run.
 
 # Requirements
 The scripts were tested in R 3.5.0 and Matlab 2019a.
