@@ -54,17 +54,17 @@ dotime <- 1 # chosen by the user
 
 ## THIS IS YOUR MATRIX Output_mat (for the example without analysis over time)
 # For simplicity, instead of having the whole time series for all simulations, we reported 2 cases:
-file <- "Matrice_REF_C_GLP_15years.csv" # predicted concentrations in microg/l at a fixed time = 15 years
+file <- "Matrice_REF_C_GLP_15years.csv" # predicted concentrations in aquifer in microg/l at a fixed time = 15 years
 # organized as: each row is a different simulation, each column is a different time
-GLP_aq_BRZ_at15y <- as.matrix(read.csv(file, header = TRUE, sep = ";", dec = ".", check.names = FALSE))
-labout_at5 <- colnames(GLP_aq_BRZ_at15y)
+mat_fixed <- as.matrix(read.csv(file, header = TRUE, sep = ";", dec = ".", check.names = FALSE))
+labout_fixed <- colnames(mat_fixed)
 
 ## OR THIS IS YOUR MATRIX Output_mat (for the example with analysis over time)
-file <- "Matrice_REF_C_GLP_by5years.csv" # predicted concentrations in microg/l over time
+file <- "Matrice_REF_C_GLP_by5years.csv" # predicted concentrations in aquifer in microg/l over time
 # In this example, predicted concentrations every 5 years
 # organized as: each row is a different simulation, each column is a different time
-GLP_aq_BRZ_by5y <- as.matrix(read.csv(file, header = TRUE, sep = ";", dec = ".", check.names = FALSE))
-labout_by5 <- colnames(GLP_aq_BRZ_by5y)
+mat_overtime <- as.matrix(read.csv(file, header = TRUE, sep = ";", dec = ".", check.names = FALSE))
+labout_overtime <- colnames(mat_overtime)
 
 ## THIS IS YOUR MATRIX sampling_points
 file <- "Matrice_parametri.csv" # values of uncertain parameters sampled from a uniform distribution using a Quasi Monte-Carlo technique
@@ -85,9 +85,9 @@ thr <- 0.1 # to be chosen by the user
 ##############################################################################################################
 
 if (dotime == 1) {
-  Output_Mat <- GLP_aq_BRZ_by5y # Output_Mat goes in the function to calculate the indicators
+  Output_Mat <- mat_overtime # Output_Mat goes in the function to calculate the indicators
 } else {
-  Output_Mat <- GLP_aq_BRZ_at15y
+  Output_Mat <- mat_fixed
 }
 
 
@@ -117,14 +117,14 @@ if (dotime == 1) {
   df_plot <- as.data.frame(tmp)
   # for plot
   break.out <- seq(1,max(x_pos),1)
-  lab.out <- labout_by5
+  lab.out <- labout_overtime
 } else {
   tmp <- eval(parse(text = var.out))
   x_pos <- 1
   df_plot <- as.data.frame(tmp)
   # for plot
   break.out <- seq(1,max(x_pos),1)
-  lab.out <- labout_at5
+  lab.out <- labout_fixed
 }
 
 df_plot <- cbind(as.data.frame(name_var) ,
