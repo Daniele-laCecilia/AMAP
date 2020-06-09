@@ -55,12 +55,12 @@ dotime = 0; % chosen by the user
 
 %% THIS IS YOUR MATRIX Output_mat (for the example without analysis over time)
 % For simplicity, instead of having the whole time series for all simulations, we reported 2 cases:
-file = 'Matrice_REF_C_GLP_15years.csv'; % predicted concentrations in microg/l at a fixed time = 15 years
+file = 'Matrice_REF_C_GLP_15years.csv'; % predicted concentrations in aquifer in microg/l at a fixed time = 15 years
 % organized as: each row is a different simulation, each column is a different time
 opts = detectImportOptions(file, 'NumHeaderLines', 1, 'Delimiter',';');
 opts.VariableNamesLine = 1;
 % opts.VariableNames
-GLP_aq_BRZ_at15y = readmatrix(file, opts);
+mat_fixed = readmatrix(file, opts);
 
 %open file
 fid = fopen(file,'r');
@@ -69,15 +69,15 @@ headerline = fgetl(fid);
 %close file
 fclose(fid);
 headers = textscan(headerline,'%s','Delimiter',';');
-labout_at5 = headers{1,1};
+labout_fixed = headers{1,1};
 
 %% OR THIS IS YOUR MATRIX Output_mat (for the example with analysis over time)
-file = 'Matrice_REF_C_GLP_by5years.csv'; % predicted concentrations in microg/l over time
+file = 'Matrice_REF_C_GLP_by5years.csv'; % predicted concentrations in aquifer in microg/l over time
 % In this example, predicted concentrations every 5 years
 % organized as: each row is a different simulation, each column is a different time
 opts = detectImportOptions(file, 'NumHeaderLines', 1, 'Delimiter',';');
 opts.VariableNamesLine = 1;
-GLP_aq_BRZ_by5y = readmatrix(file, opts);
+mat_overtime = readmatrix(file, opts);
 
 %open file
 fid = fopen(file,'r');
@@ -86,7 +86,7 @@ headerline = fgetl(fid);
 %close file
 fclose(fid);
 headers = textscan(headerline,'%s','Delimiter',';');
-labout_by5 = headers{1,1};
+labout_overtime = headers{1,1};
 
 %% THIS IS YOUR MATRIX sampling_points
 file = 'Matrice_parametri.csv'; % values of uncertain parameters sampled from a uniform distribution using a Quasi Monte-Carlo technique
@@ -135,9 +135,9 @@ nscenario = length(mysort);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if (dotime == 1)
-    Output_Mat = GLP_aq_BRZ_by5y; % Output_Mat goes in the function to calculate the indicators
+    Output_Mat = mat_overtime; % Output_Mat goes in the function to calculate the indicators
 else
-    Output_Mat = GLP_aq_BRZ_at15y;
+    Output_Mat = mat_fixed;
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -153,11 +153,11 @@ if (dotime == 0)
     tmp = [tmp,zeros(Npar,1)];
     tmp = tmp';
     x_pos = 1;
-    labout = labout_at5;
+    labout = labout_fixed;
 else
     x_pos = 1:size(tmp,2);
     tmp = tmp'; % for plotting
-    labout = labout_by5;
+    labout = labout_overtime;
 end
 bar(tmp,'stacked' );
 grid on
