@@ -11,7 +11,7 @@ In the example provided here, the target quantity is GLP concentration in the aq
 "AMAP" builds on the AMA family and adds the Probability framework.
 
 # How to:
-This function computes AMA sensitivity indices and principal Sobol Indices (Si) and AMAP starting from a set of Monte Carlo realizations. It also gives conditional moments with respect to one parameter at a time up to order 4.
+This function computes AMA sensitivity indices and principal Sobol Indices (Si) and AMAP starting from a set of Monte Carlo realizations. It also gives conditional moments with respect to one parameter.
 
 To run the example:
 If you use R, copy the .R scripts from the folder "R" and paste them in the folder "data"; then, run the main script "AMAP_analysis.R";
@@ -25,8 +25,8 @@ We invite the Users to test AMAP on their data, if suitable.
 * In the INPUT section of the main scripts, the Users define:
   * The indicators to plot by setting "var_out";
   * The value of "dotime" to switch between an analysis at a fixed point in time or over time;
-  * The .csv file name of the matrix "Sampling_points", containing Monte Carlo realizations of the parameters [n simulations x n parameters];
-  * The .csv file names (fixed time and over time) of the matrix "Output_Mat", containing full model evaluations [n simulations x n time points]. Should you have only one file, either fixed time or over time, please fill both entries with the same file name and then set "dotime" accordingly;
+  * The .csv file name of the matrix "Sampling_points", containing Monte Carlo realizations of the parameters [n simulations x n parameters]. The first row contains the name of the uncertain parameters. The column delimiter is set to semicolomn;
+  * The .csv file names (fixed time and over time) of the matrix "Output_Mat", containing full model evaluations [n simulations x n time points]. Should you have only one file, either fixed time or over time, please fill both entries with the same file name and then set "dotime" accordingly. The first row contains the name of the output variables. The column delimiter is set to semicolomn;
   * The number of classes for "nclass" used to compute conditional statistics;
   * The threshold value for "thr".
 * The script automatically get "name_var", the name of each output variable (text string);
@@ -44,6 +44,10 @@ The scripts were tested in R 3.5.0 and Matlab 2019a.
 # Getting help
 Should you encounter a clear bug, please describe it at https://github.com/Daniele-laCecilia/AMAP/issues.
 Should you have questions/feedbacks about the analysis/function, you may reach us at our email addresses reported below.
+Should you will to run a full uncertainty quantification analysis on your model, feel free to get in contact with us.
+
+# Community engagement
+Different indices may differently apportion the model parameters uncertainty. If this is the case for you using the AMA indices, please share your comparison with us via email. We will compile all the contributions and eventually deliver a final review with all the sources acknowledged.
 
 # Authors
 Daniele, la Cecilia (The University of Sydney, now at eawag, @ daniele.lacecilia at sydney.edu.eu)
